@@ -287,10 +287,11 @@ $(cat "${file_license}")"
       fi
 
       if [ -n "${txt_license}" ]; then
+        local cols="$(lib_msg_term_get --cols)"
         if ${emptyline}; then printf "\n"; fi
         printf "  %s\n" "COPYRIGHT"
         printf "${txt_license}"                               \
-          | fold -w $(( $(lib_msg_term_get --cols) - 4 )) -s  \
+          | fold -w $(( cols - 4 )) -s                        \
           | while IFS= read -r line || [ -n "${line}" ]; do
               printf "    %s\n" "${line}"
             done
