@@ -179,6 +179,7 @@ your terminal window must have a size of <100x30> or bigger.
 
 Required Packages:
   General: Dialog
+   Alpine: > sudo apk add dialog
    Debian: > sudo apt install dialog"
 
 #-------------------------------------------------------------------------------
