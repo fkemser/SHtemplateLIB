@@ -62,6 +62,8 @@ readonly LIB_SHTPL_DE_TXT_TRAP_MAIN_TERMINATING="Skript beendet (PID <\${pid}>).
 readonly LIB_SHTPL_DE_DLG_TTL_ERROR="!!! FEHLER !!!"
 readonly LIB_SHTPL_DE_DLG_TTL_FILE_IN="Quelldatei"
 readonly LIB_SHTPL_DE_DLG_TTL_FILE_OUT="Zieldatei"
+readonly LIB_SHTPL_DE_DLG_TTL_INFO="*** INFORMATION ***"
+readonly LIB_SHTPL_DE_DLG_TTL_WARNING="^^^ WARNUNG ^^^"
 
 #-------------------------------------------------------------------------------
 #  <text>

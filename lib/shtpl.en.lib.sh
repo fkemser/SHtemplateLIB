@@ -62,6 +62,8 @@ readonly LIB_SHTPL_EN_TXT_TRAP_MAIN_TERMINATING="Script terminated (PID <\${pid}
 readonly LIB_SHTPL_EN_DLG_TTL_ERROR="!!! ERROR !!!"
 readonly LIB_SHTPL_EN_DLG_TTL_FILE_IN="Source File"
 readonly LIB_SHTPL_EN_DLG_TTL_FILE_OUT="Destination File"
+readonly LIB_SHTPL_EN_DLG_TTL_INFO="*** INFORMATION ***"
+readonly LIB_SHTPL_EN_DLG_TTL_WARNING="^^^ WARNING ^^^"
 
 #-------------------------------------------------------------------------------
 #  <text>
