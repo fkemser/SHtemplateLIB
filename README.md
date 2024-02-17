@@ -109,11 +109,13 @@ This file contains **language-independent strings** and all the library's **func
 
 Function | Description
 :--- | :---
-`lib_shtpl_about`   | Print about message (project, author, copyright, license, etc.).
-`lib_shtpl_arg`     | Generate/Format script's **help**. Only **for script parameters** (help's `SYNOPSIS` section), for other help sections see `lib_shtpl_genhelp()` instead.
-`lib_shtpl_genhelp` | Generate/Format script's **help**. For all help sections **except** script parameters (see `lib_shtpl_arg()` instead).
-`lib_shtpl_help`    | Print help message using `less` utility
-`lib_shtpl_message` | Log/Print **error/info/warning message** and optionally exit
+`lib_shtpl_about`       | Print about message (project, author, copyright, license, etc.).
+`lib_shtpl_arg`         | Generate/Format script's **help**. Only **for script parameters** (help's `SYNOPSIS` section), for other help sections see `lib_shtpl_genhelp()` instead.
+`lib_shtpl_arg_is_set`  | Check if one or more arguments are set (not empty) and log/print an error message if not
+`lib_shtpl_error_arg`   | Log/Print an error message for a certain argument
+`lib_shtpl_genhelp`     | Generate/Format script's **help**. For all help sections **except** script parameters (see `lib_shtpl_arg()` instead).
+`lib_shtpl_help`        | Print help message using `less` utility
+`lib_shtpl_message`     | Log/Print **error/info/warning message** and optionally exit
 
 <p align="right">(<a href="#documentation">back to overview</a>)</p>
 

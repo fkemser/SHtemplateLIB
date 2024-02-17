@@ -791,6 +791,71 @@ lib_shtpl_arg() {
 }
 
 #===  FUNCTION  ================================================================
+#         NAME:  lib_shtpl_arg_is_set
+#
+#  DESCRIPTION:  Check if one or more arguments are set (not empty)
+#                and log/print an error message if not
+#
+# PARAMETER
+#         1...:  Argument(s) to check (identifiers, without '${}')
+#
+#      OUTPUTS:  See <lib_shtpl_error_arg()>
+#
+#   RETURNS  0:  All arguments are set
+#            1:  At least one argument is empty or its identifier is not valid
+#
+#      EXAMPLE:  > arg_int="5"
+#                > arg_str=""
+#                > lib_shtpl_arg_is_set "arg_int" "arg_str"
+#                >> Invalid argument <> for parameter [${L_RUN_HLP_PAR_ARG_STR}].
+#===============================================================================
+lib_shtpl_arg_is_set() {
+  lib_core_args_passed "$@" || return
+  local result="0"
+
+  local par
+  for par in "$@"; do
+    lib_core_is --posix-name "${par}"     && \
+    eval lib_core_is --set \"\${${par}}\" || \
+    { lib_shtpl_error_arg "${par}"; result="1"; }
+  done
+
+  return "${result}"
+}
+
+#===  FUNCTION  ================================================================
+#         NAME:  lib_shtpl_error_arg
+#
+#  DESCRIPTION:  Log/Print an error message for a certain argument, see example
+#                below
+#
+# PARAMETER  1:  Argument (identifier)
+#
+#      OUTPUTS:  See <lib_shtpl_message()>
+#
+#      RETURNS:  Depends on <lib_shtpl_message()>
+
+#      EXAMPLE:  > lib_shtpl_error_arg "arg_str"
+#                >> Invalid argument <${arg_str}> for parameter [${L_RUN_HLP_PAR_ARG_STR}].
+#===============================================================================
+lib_shtpl_error_arg() {
+  local arg_arg="$1"
+
+  local text1
+  local text2
+  eval "text1=\${LIB_SHTPL_${ID_LANG}_TXT_INVALID_ARG_1}"
+  eval "text2=\${LIB_SHTPL_${ID_LANG}_TXT_INVALID_ARG_2}"
+
+  local value
+  local param
+  eval "value=\${${arg_arg}}"
+  param="$(lib_core_str_to --const "L_$(lib_core_file_get --name "$0")_HLP_PAR_${arg_arg}")"
+  eval "param=\${${param}}"
+
+  lib_shtpl_message --error "${text1} <${value}> ${text2} [${param}]."
+}
+
+#===  FUNCTION  ================================================================
 #         NAME:  lib_shtpl_genhelp
 #
 #  DESCRIPTION:  Generate/Format script's help. For all help sections except
