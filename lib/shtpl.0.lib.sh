@@ -791,54 +791,57 @@ lib_shtpl_arg() {
 }
 
 #===  FUNCTION  ================================================================
-#         NAME:  lib_shtpl_arg_is_set
-#
-#  DESCRIPTION:  Check if one or more arguments are set (not empty)
-#                and log/print an error message if not
-#
-# PARAMETER
-#         1...:  Argument(s) to check (identifiers, without '${}')
-#
-#      OUTPUTS:  See <lib_shtpl_error_arg()>
-#
-#   RETURNS  0:  All arguments are set
-#            1:  At least one argument is empty or its identifier is not valid
-#
-#      EXAMPLE:  > arg_int="5"
-#                > arg_str=""
-#                > lib_shtpl_arg_is_set "arg_int" "arg_str"
-#                >> Invalid argument <> for parameter [${L_RUN_HLP_PAR_ARG_STR}].
+#         NAME:  lib_shtpl_arg_action_is_valid
+#  DESCRIPTION:  Check if <arg_action> (see '/src/run.sh') is valid
+#      OUTPUTS:  An error message to <stderr> and/or <syslog> if <arg_action>
+#                is not valid. See also <lib_shtpl_message()>.
+#   RETURNS  0:  <arg_action> is valid
+#            1:  <arg_action> is empty or not valid
 #===============================================================================
-lib_shtpl_arg_is_set() {
-  lib_core_args_passed "$@" || return
-  local result="0"
+lib_shtpl_arg_action_is_valid() {
+  local msg
+  local txt
+  eval "txt=\${LIB_SHTPL_${ID_LANG}_TXT_ARG_ACTION_ERR_NOTALLOWED}"
 
-  local par
-  for par in "$@"; do
-    lib_core_is --posix-name "${par}"     && \
-    eval lib_core_is --set \"\${${par}}\" || \
-    { lib_shtpl_error_arg "${par}"; result="1"; }
-  done
+  case "${arg_mode}" in
+    ${ARG_MODE_DAEMON}|${ARG_MODE_INTERACTIVE})
+      ;;
+    ${ARG_MODE_INTERACTIVE_SUBMENU})
+      msg="<${arg_action}> ${txt} <${arg_mode}>."
 
-  return "${result}"
+      lib_core_list_contains_str_ptr \
+        "${arg_action}" "${ARG_ACTION_LIST_INTERACTIVE}" " " "ARG_ACTION_"
+      ;;
+    ${ARG_MODE_SCRIPT})
+      msg="$(lib_core_str_to --const \
+        "L_$(lib_core_file_get --name "$0")_HLP_PAR_ARG_ACTION_${arg_action}")"
+      eval "msg=\${${msg}}"
+      msg="[${msg}] ${txt} <${arg_mode}>."
+
+      lib_core_list_contains_str_ptr \
+        "${arg_action}" "${ARG_ACTION_LIST_SCRIPT}" " " "ARG_ACTION_"
+      ;;
+  esac || \
+
+  if lib_core_is --set "${arg_action}"; then
+    lib_shtpl_message --error "${msg}"
+  else
+    eval lib_shtpl_message --error \"\${LIB_SHTPL_${ID_LANG}_TXT_ARG_ACTION_ERR_NOTSET}\"
+  fi
 }
 
 #===  FUNCTION  ================================================================
-#         NAME:  lib_shtpl_error_arg
-#
-#  DESCRIPTION:  Log/Print an error message for a certain argument, see example
-#                below
-#
+#         NAME:  lib_shtpl_arg_error
+#  DESCRIPTION:  Log/Print an error message ("Invalid argument <...> for
+#                parameter [...]") for a certain argument
 # PARAMETER  1:  Argument (identifier)
-#
-#      OUTPUTS:  See <lib_shtpl_message()>
-#
-#      RETURNS:  Depends on <lib_shtpl_message()>
-
-#      EXAMPLE:  > lib_shtpl_error_arg "arg_str"
+#      OUTPUTS:  An error message to <stderr> and/or <syslog>,
+#                see also <lib_shtpl_message()>.
+#      RETURNS:  Always '1', see also <lib_shtpl_message()>.
+#      EXAMPLE:  > lib_shtpl_arg_error "arg_str"
 #                >> Invalid argument <${arg_str}> for parameter [${L_RUN_HLP_PAR_ARG_STR}].
 #===============================================================================
-lib_shtpl_error_arg() {
+lib_shtpl_arg_error() {
   local arg_arg="$1"
 
   local text1
@@ -853,6 +856,44 @@ lib_shtpl_error_arg() {
   eval "param=\${${param}}"
 
   lib_shtpl_message --error "${text1} <${value}> ${text2} [${param}]."
+}
+
+#===  FUNCTION  ================================================================
+#         NAME:  lib_shtpl_arg_is_set
+#
+#  DESCRIPTION:  Check if one or more arguments are set (not empty)
+#
+# PARAMETER
+#         1...:  Argument(s) to check (identifiers, without '${}')
+#
+#      OUTPUTS:  An error message for each argument that is not set,
+#                see also <lib_shtpl_arg_error()>.
+#
+#   RETURNS  0:  All arguments are set
+#            1:  At least one argument is empty
+#            2:  At least one argument (identifier) is not valid
+#
+#      EXAMPLE:  > arg_int="5"
+#                > arg_str=""
+#                > lib_shtpl_arg_is_set "arg_int" "arg_str"
+#                >> Invalid argument <> for parameter [${L_RUN_HLP_PAR_ARG_STR}].
+#===============================================================================
+lib_shtpl_arg_is_set() {
+  lib_core_args_passed "$@" || return
+  local result="0"
+
+  local par
+  for par in "$@"; do
+    if lib_core_is --posix-name "${par}"; then
+      eval lib_core_is --set \"\${${par}}\" || \
+      { lib_shtpl_arg_error "${par}"; result="1"; }
+    else
+      lib_shtpl_message --error "<${par}> identifier is not valid."
+      result="2"
+    fi
+  done
+
+  return "${result}"
 }
 
 #===  FUNCTION  ================================================================

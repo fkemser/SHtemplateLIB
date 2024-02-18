@@ -44,6 +44,8 @@ readonly LIB_SHTPL_EN_TXT_PROCESSING="Processing request ..."
 readonly LIB_SHTPL_EN_TXT_SELECTALL="Select all"
 readonly LIB_SHTPL_EN_TXT_STDIN_HIDDEN="Due to security reasons your keyboard input is not displayed."
 
+readonly LIB_SHTPL_EN_TXT_ARG_ACTION_ERR_NOTALLOWED="is not allowed within mode"
+readonly LIB_SHTPL_EN_TXT_ARG_ACTION_ERR_NOTSET="No action set."
 readonly LIB_SHTPL_EN_TXT_ARGS_CHECK_ERR="Parameter(s) out of allowed range. ${LIB_SHTPL_EN_TXT_HELP} ${LIB_SHTPL_EN_TXT_ABORTING}"
 readonly LIB_SHTPL_EN_TXT_ARGS_READ_ERR="Unknown parameter or missing/invalid argument. ${LIB_SHTPL_EN_TXT_HELP} ${LIB_SHTPL_EN_TXT_ABORTING}"
 readonly LIB_SHTPL_EN_TXT_INIT_CHECK_ERR="One or more mandatory requirements are not fulfilled. ${LIB_SHTPL_EN_TXT_HELP} ${LIB_SHTPL_EN_TXT_ABORTING}"

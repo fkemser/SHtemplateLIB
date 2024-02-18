@@ -44,6 +44,8 @@ readonly LIB_SHTPL_DE_TXT_PROCESSING="Verarbeite Auftrag ..."
 readonly LIB_SHTPL_DE_TXT_SELECTALL="Alle(s) auswählen"
 readonly LIB_SHTPL_DE_TXT_STDIN_HIDDEN="Aus Sicherheitsgründen werden Ihre Tastatureingaben nicht angezeigt."
 
+readonly LIB_SHTPL_DE_TXT_ARG_ACTION_ERR_NOTALLOWED="ist nicht erlaubt im Modus"
+readonly LIB_SHTPL_DE_TXT_ARG_ACTION_ERR_NOTSET="Es wurde keine Aktion festgelegt."
 readonly LIB_SHTPL_DE_TXT_ARGS_CHECK_ERR="Ein oder mehrere Parameter sind ungültig. ${LIB_SHTPL_DE_TXT_HELP} ${LIB_SHTPL_DE_TXT_ABORTING}"
 readonly LIB_SHTPL_DE_TXT_ARGS_READ_ERR="Unbekannter Parameter oder fehlendes/ungültiges Argument. ${LIB_SHTPL_DE_TXT_HELP} ${LIB_SHTPL_DE_TXT_ABORTING}"
 readonly LIB_SHTPL_DE_TXT_INIT_CHECK_ERR="Eine oder mehrere Voraussetzungen (Pakete, Dateien, etc.) sind nicht erfüllt. ${LIB_SHTPL_DE_TXT_HELP} ${LIB_SHTPL_DE_TXT_ABORTING}"
