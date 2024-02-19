@@ -835,14 +835,27 @@ lib_shtpl_arg_action_is_valid() {
 #  DESCRIPTION:  Log/Print an error message ("Invalid argument <...> for
 #                parameter [...]") for a certain argument
 # PARAMETER  1:  Argument (identifier)
+#            2:  (Optional) Separate parameter (identifier) in case parameter
+#                <1> does not have a command line switch (L_RUN_HLP_PAR_ARG_...) 
 #      OUTPUTS:  An error message to <stderr> and/or <syslog>,
 #                see also <lib_shtpl_message()>.
-#      RETURNS:  Always '1', see also <lib_shtpl_message()>.
+#   RETURNS  1:  Default return value, see also <lib_shtpl_message()>
+#            2:  At least one of the parameters is not valid
 #      EXAMPLE:  > lib_shtpl_arg_error "arg_str"
 #                >> Invalid argument <${arg_str}> for parameter [${L_RUN_HLP_PAR_ARG_STR}].
+#
+#                > lib_shtpl_arg_error "arg_str" "ARG_ACTION_CUSTOM4"
+#                >> Invalid argument <${arg_str}> for parameter [${L_RUN_HLP_PAR_ARG_ACTION_CUSTOM4}].
 #===============================================================================
 lib_shtpl_arg_error() {
   local arg_arg="$1"
+  local arg_param="$2"
+
+  lib_core_is --empty "${arg_param}"  && \
+  arg_param="${arg_arg}"              || \
+  arg_param="$(lib_core_str_to --const "${arg_param}")"
+
+  lib_core_is --posix-name "${arg_arg}" "${arg_param}" || return 2
 
   local text1
   local text2
@@ -852,7 +865,7 @@ lib_shtpl_arg_error() {
   local value
   local param
   eval "value=\${${arg_arg}}"
-  param="$(lib_core_str_to --const "L_$(lib_core_file_get --name "$0")_HLP_PAR_${arg_arg}")"
+  param="$(lib_core_str_to --const "L_$(lib_core_file_get --name "$0")_HLP_PAR_${arg_param}")"
   eval "param=\${${param}}"
 
   lib_shtpl_message --error "${text1} <${value}> ${text2} [${param}]."
