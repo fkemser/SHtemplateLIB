@@ -212,7 +212,7 @@ lib_shtpl_about_print1() {
 
   case "${arg_format}" in
     ${ARG_FORMAT_DIALOG}|${ARG_FORMAT_HELP}|${ARG_FORMAT_TERMINAL}) ;;
-    *) false;;
+    *) false ;;
   esac                                                                      && \
   lib_core_is --set "${arg_project}" "${arg_authors}"                       || \
   return
@@ -422,7 +422,7 @@ lib_shtpl_about_print2() {
     ${ARG_DESTINATION_TERMINAL})
       arg_timeout="${arg_timeout:-7}"
       ;;
-    *) false;;
+    *) false ;;
   esac                                                      && \
   lib_core_is --set "${arg_project}" "${arg_authors}"       && \
   lib_core_int_is_within_range "0" "${arg_timeout}" ""      || \
@@ -806,12 +806,14 @@ lib_shtpl_arg_action_is_valid() {
   case "${arg_mode}" in
     ${ARG_MODE_DAEMON}|${ARG_MODE_INTERACTIVE})
       ;;
+
     ${ARG_MODE_INTERACTIVE_SUBMENU})
       msg="<${arg_action}> ${txt} <${arg_mode}>."
 
       lib_core_list_contains_str_ptr \
         "${arg_action}" "${ARG_ACTION_LIST_INTERACTIVE}" " " "ARG_ACTION_"
       ;;
+
     ${ARG_MODE_SCRIPT})
       msg="$(lib_core_str_to --const \
         "L_$(lib_core_file_get --name "$0")_HLP_PAR_ARG_ACTION_${arg_action}")"
@@ -836,7 +838,7 @@ lib_shtpl_arg_action_is_valid() {
 #                parameter [...]") for a certain argument
 # PARAMETER  1:  Argument (identifier)
 #            2:  (Optional) Separate parameter (identifier) in case parameter
-#                <1> does not have a command line switch (L_RUN_HLP_PAR_ARG_...) 
+#                <1> does not have a command line switch (L_RUN_HLP_PAR_ARG_...)
 #      OUTPUTS:  An error message to <stderr> and/or <syslog>,
 #                see also <lib_shtpl_message()>.
 #   RETURNS  1:  Default return value, see also <lib_shtpl_message()>
@@ -1126,7 +1128,7 @@ lib_shtpl_message() {
   local logdest
   logdest="${arg_logdest}"
   case "$1" in
-    --${ARG_LOGDEST_BOTH}) shift;;
+    --${ARG_LOGDEST_BOTH}) shift ;;
     --${ARG_LOGDEST_SYSLOG}|--${ARG_LOGDEST_TERMINAL})
       case "${logdest}" in
         ${ARG_LOGDEST_BOTH})
