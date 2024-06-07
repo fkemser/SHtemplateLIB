@@ -187,6 +187,10 @@ Required Packages:
    Alpine: > sudo apk add dialog
    Debian: > sudo apt install dialog"
 
+# Windows Subsystem for Linux (WSL) | systemd
+readonly LIB_SHTPL_EN_TXT_HELP_TTL_REQUIREMENTS_WSL_SYSTEMD="'Windows Subsystem for Linux (WSL)' Users Only"
+readonly LIB_SHTPL_EN_TXT_HELP_TXT_REQUIREMENTS_WSL_SYSTEMD="Parts of this script or its dependencies require a full system/session manager like 'systemd'. Depending on your current WSL distribution you may have to enable 'systemd' manually. For more information please have a look at: https://learn.microsoft.com/en-us/windows/wsl/systemd"
+
 #-------------------------------------------------------------------------------
 #  SYNOPSIS
 #-------------------------------------------------------------------------------
