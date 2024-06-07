@@ -84,7 +84,7 @@ readonly LIB_SHTPL_EN_DLG_TXT_ERROR="An error has occurred or the request has be
 readonly LIB_SHTPL_EN_DLG_TXT_ERROR_TRYAGAIN="${LIB_SHTPL_EN_DLG_TXT_ERROR} Would you like to try again?"
 readonly LIB_SHTPL_EN_DLG_TXT_FILE_IN="Please select the file to open / load."
 readonly LIB_SHTPL_EN_DLG_TXT_FILE_OUT="Please specify a path where the file will be stored."
-readonly LIB_SHTPL_EN_DLG_TXT_FILE_OUT_NOOVERRIDE="${LIB_SHTPL_EN_DLG_TXT_FILE_OUT} The file(path) must be new, existing files will not be overridden."
+readonly LIB_SHTPL_EN_DLG_TXT_FILE_OUT_NOOVERRIDE="${LIB_SHTPL_EN_DLG_TXT_FILE_OUT} The file(path) must be new, existing files will not be overwritten."
 readonly LIB_SHTPL_EN_DLG_TXT_INFO="\
 =============
  INFORMATION
