@@ -189,7 +189,7 @@ Benötigte Pakete:
 
 # Windows Subsystem for Linux (WSL) | systemd
 readonly LIB_SHTPL_DE_TXT_HELP_TTL_REQUIREMENTS_WSL_SYSTEMD="Nur für Nutzer von 'Windows Subsystem for Linux (WSL)'"
-readonly LIB_SHTPL_DE_TXT_HELP_TXT_REQUIREMENTS_WSL_SYSTEMD="Teile dieses Skripts bzw. dessen Abhängigkeiten erfordern einen vollständigen System-/Sitzungsmanager wie beispielsweise 'systemd'. Abhängig von der verwendeten WSL-Distribution muss 'systemd' manuell aktiviert werden. Weitere Informationen hierzu finden Sie unter: https://learn.microsoft.com/de-de/windows/wsl/systemd"
+readonly LIB_SHTPL_DE_TXT_HELP_TXT_REQUIREMENTS_WSL_SYSTEMD="Bitte stellen Sie sicher, dass 'systemd' als System-/Sitzungsmanager aktiviert ist. Weitere Informationen finden Sie unter: https://learn.microsoft.com/de-de/windows/wsl/systemd"
 
 #-------------------------------------------------------------------------------
 #  SYNOPSIS
