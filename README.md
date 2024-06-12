@@ -77,9 +77,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This repository provides constants and functions that are **exclusively used within the shell template repository [SHtemplate][SHtemplate-url]** such as
+This repository provides constants and functions that are **exclusively used within [SHtemplate][SHtemplate-url] repository** such as
 
-* language-specific text snippets (help texts, interactive dialogues, terminal/log messages, etc.), and
+* language-specific text snippets like help texts, interactive dialogues, terminal/log messages, and
 * functions, e.g. the semi-automatic creation of the script's help.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -94,9 +94,9 @@ For better code readability and maintenance the library is divided into multiple
 | /lib/                                | /           | Description                                                                              |
 |--------------------------------------|-------------|------------------------------------------------------------------------------------------|
 | licenses                             |             |                                                                                          |
-| ...                                  | `<lic>.txt` | License header files where `<lic>` is the license's [`SPDX-License-Identifier`][SPDX-License-List]. Used by `lib_shtpl_about()`, see below.                                                                                                                                      |
-| [`shtpl.0.lib.sh`](#shtpl0libsh)     |             | Language-**independent** strings and all the library's **functions**                     |
-| [`shtpl.<ll>.lib.sh`](#shtpllllibsh) |             | Language-**specific** strings (translations), e.g. `shtpl.en.lib.sh` for English strings |
+| ...                                  | `<lic>.txt` | License header files where `<lic>` is the license's [`SPDX-License-Identifier`][SPDX-License-List]. Used by [`lib_shtpl_about()`](#shtpl0libsh) function.                                                                                                                                       |
+| [`shtpl.0.lib.sh`](#shtpl0libsh)     |             | Contains language-**independent** strings and all the library's **functions**            |
+| [`shtpl.<ll>.lib.sh`](#shtpllllibsh) |             | Contains language-**specific** strings (translations), e.g. `shtpl.en.lib.sh` for English strings |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -109,7 +109,7 @@ This file contains **language-independent strings** and all the library's **func
 
 Function | Description
 :--- | :---
-`lib_shtpl_about`       | Print about message (project, author, copyright, license, etc.).
+`lib_shtpl_about`       | Print about message (project, author, copyright, license, etc.)
 `lib_shtpl_arg`         | Generate/Format script's **help**. Only **for script parameters** (help's `SYNOPSIS` section), for other help sections see `lib_shtpl_genhelp()` instead.
 `lib_shtpl_arg_action_is_valid` | Check if `arg_action` (see `/src/run.sh`) is valid
 `lib_shtpl_arg_error`   | Log/Print an error message for a certain argument
@@ -216,10 +216,6 @@ Project Link: [https://github.com/fkemser/SHtemplateLIB](https://github.com/fkem
 [license-url]: https://github.com/fkemser/SHtemplateLIB/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[screenshot1]: res/screenshot1.gif
-[screenshot2]: res/screenshot2.gif
-[screenshot3]: res/screenshot3.gif
-[screenshot4]: res/screenshot4.gif
 
 [SHtemplate-url]: https://github.com/fkemser/SHtemplate
 
