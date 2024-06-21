@@ -214,7 +214,7 @@ lib_shtpl_about_print1() {
     ${ARG_FORMAT_DIALOG}|${ARG_FORMAT_HELP}|${ARG_FORMAT_TERMINAL}) ;;
     *) false ;;
   esac                                                                      && \
-  lib_core_is --set "${arg_project}" "${arg_authors}"                       || \
+  lib_core_is --not-empty "${arg_project}" "${arg_authors}"                 || \
   return
 
   #-----------------------------------------------------------------------------
@@ -424,7 +424,7 @@ lib_shtpl_about_print2() {
       ;;
     *) false ;;
   esac                                                      && \
-  lib_core_is --set "${arg_project}" "${arg_authors}"       && \
+  lib_core_is --not-empty "${arg_project}" "${arg_authors}" && \
   lib_core_int_is_within_range "0" "${arg_timeout}" ""      || \
   return
 
@@ -438,7 +438,7 @@ lib_shtpl_about_print2() {
   case "${arg_destination}" in
     ${ARG_DESTINATION_DIALOG})
       # Show ASCII logo if defined
-      if lib_core_is --set "${arg_logo}"; then
+      if lib_core_is --not-empty "${arg_logo}"; then
         dialog --no-collapse --infobox "${arg_logo}" 0 0
         sleep 3
       fi
@@ -493,9 +493,9 @@ lib_shtpl_about_print2() {
 lib_shtpl_about() {
   local arg_destination="$1"
 
-  lib_core_is --set "${L_ABOUT_PROJECT}" "${L_ABOUT_AUTHORS}" \
-    "${L_ABOUT_INSTITUTION}" "${L_ABOUT_DESCRIPTION}"         \
-    "${L_ABOUT_VERSION}" "${L_ABOUT_YEARS}"                   \
+  lib_core_is --not-empty "${L_ABOUT_PROJECT}" "${L_ABOUT_AUTHORS}" \
+    "${L_ABOUT_INSTITUTION}" "${L_ABOUT_DESCRIPTION}"               \
+    "${L_ABOUT_VERSION}" "${L_ABOUT_YEARS}"                         \
     "${L_ABOUT_LICENSE}"  "" ""
 
   case "${arg_destination}" in
@@ -671,7 +671,7 @@ lib_shtpl_arg() {
   esac
 
   # Pointer / Value 1
-  if lib_core_is --set "${ptr1}"; then
+  if lib_core_is --not-empty "${ptr1}"; then
     ptr1="$(lib_core_str_to --const "${ptr1}")"
     if lib_core_is --varname "${ptr1}"; then
       eval "val1=\${${ptr1}}"
@@ -679,7 +679,7 @@ lib_shtpl_arg() {
   fi
 
   # Pointer / Value 2
-  if lib_core_is --set "${ptr2}"; then
+  if lib_core_is --not-empty "${ptr2}"; then
     ptr2="$(lib_core_str_to --const "${ptr2}")"
     if lib_core_is --varname "${ptr2}"; then
       eval "val2=\${${ptr2}}"
@@ -687,7 +687,7 @@ lib_shtpl_arg() {
   fi
 
   # Pointer / Value 3
-  if lib_core_is --set "${ptr3}"; then
+  if lib_core_is --not-empty "${ptr3}"; then
     ptr3="$(lib_core_str_to --const "${ptr3}")"
     if lib_core_is --varname "${ptr3}"; then
       eval "val3=\${${ptr3}}"
@@ -743,7 +743,7 @@ lib_shtpl_arg() {
       done
 
       # Print description (if available) and list
-      if lib_core_is --set "${val1}"; then printf "%s\n\n" "${val1}"; fi
+      if lib_core_is --not-empty "${val1}"; then printf "%s\n\n" "${val1}"; fi
       eval lib_msg_print_propvalue \
         --left --center \"2\" \"$(( $(lib_msg_term_get --cols) / 2))\" \":\" ${list}
       ;;
@@ -825,7 +825,7 @@ lib_shtpl_arg_action_is_valid() {
       ;;
   esac || \
 
-  if lib_core_is --set "${arg_action}"; then
+  if lib_core_is --not-empty "${arg_action}"; then
     lib_shtpl_message --error "${msg}"
   else
     eval lib_shtpl_message --error \"\${LIB_SHTPL_${ID_LANG}_TXT_ARG_ACTION_ERR_NOTSET}\"
@@ -900,7 +900,7 @@ lib_shtpl_arg_is_set() {
   local par
   for par in "$@"; do
     if lib_core_is --posix-name "${par}"; then
-      eval lib_core_is --set \"\${${par}}\" || \
+      eval lib_core_is --not-empty \"\${${par}}\" || \
       { lib_shtpl_arg_error "${par}"; result="1"; }
     else
       lib_shtpl_message --error "<${par}> identifier is not valid."
@@ -989,11 +989,11 @@ lib_shtpl_genhelp() {
       eval "title=\${${title_ptr_pre}${i}${title_ptr_suf}}"
       eval "text=\${${text_ptr_pre}${i}${text_ptr_suf}}"
 
-      if lib_core_is --set "${title}"; then
+      if lib_core_is --not-empty "${title}"; then
         lib_msg_print_heading -111 "${heading}"
       fi
 
-      while lib_core_is --set "${title}"; do
+      while lib_core_is --not-empty "${title}"; do
         if [ $i -eq 1 ]; then
           lib_msg_print_heading -301 "${str_l}${title}${str_r}"
         else
@@ -1024,11 +1024,11 @@ lib_shtpl_genhelp() {
       eval "heading=\${${heading}}"
       eval "text=\${${text_ptr_pre}${i}${text_ptr_suf}}"
 
-      if lib_core_is --set "${text}"; then
+      if lib_core_is --not-empty "${text}"; then
         lib_msg_print_heading -111 "${heading}"
       fi
 
-      while lib_core_is --set "${text}"; do
+      while lib_core_is --not-empty "${text}"; do
         if [ $i -eq 1 ]; then
           lib_msg_print_heading -301 "${str_l}${i}${str_r}"
         else
@@ -1045,11 +1045,11 @@ lib_shtpl_genhelp() {
       eval "heading=\${LIB_SHTPL_${ID_LANG}_TXT_HELP_TTL_REFERENCES}"
       eval "text=\${${prefix}_HLP_TXT_REFERENCES_${i}}"
 
-      if lib_core_is --set "${text}"; then
+      if lib_core_is --not-empty "${text}"; then
         lib_msg_print_heading -111 "${heading}"
       fi
 
-      while lib_core_is --set "${text}"; do
+      while lib_core_is --not-empty "${text}"; do
         str="${str}${str:+ \" \" \"\" }\"[${i}]\" \"${text}\""
         i=$(( i + 1 ))
         eval "text=\${${prefix}_HLP_TXT_REFERENCES_${i}}"
