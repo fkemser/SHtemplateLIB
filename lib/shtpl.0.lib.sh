@@ -477,13 +477,19 @@ lib_shtpl_about_print2() {
 #                no arguments but expects certain environmental variables
 #                to be set, see below.
 #
-#                Usually those variables are set in '/src/lang/about.lang.sh'.
-#
 #      GLOBALS:  The function relies on the following constants/variables,
-#                usually set in '/src/lang/about.lang.sh'
-#                  L_ABOUT_AUTHORS    L_ABOUT_DESCRIPTION   L_ABOUT_INSTITUTION
-#                  L_ABOUT_LICENSE    L_ABOUT_LOGO          L_ABOUT_PROJECT
-#                  L_ABOUT_VERSION    L_ABOUT_YEARS
+#                usually set in '/src/lang/<s>.0.lang.sh'
+#
+#                  L_<S>_ABOUT_AUTHORS    L_<S>_ABOUT_DESCRIPTION   L_<S>_ABOUT_INSTITUTION
+#                  L_<S>_ABOUT_LICENSE    L_<S>_ABOUT_LOGO          L_<S>_ABOUT_PROJECT
+#                  L_<S>_ABOUT_VERSION    L_<S>_ABOUT_YEARS
+#
+#                where <S>/<s> is the script's filename without '.sh', in
+#                uppercase/lowercase letters.
+#
+#                Example: If this function is called from a file named 
+#                '/src/run.sh' then it expects <L_RUN_ABOUT_...> variables
+#                defined in '/src/lang/run.0.lang.sh'.
 #
 # PARAMETER  1:  Display format, possible values are:
 #                  --dialog     dialog
@@ -493,28 +499,31 @@ lib_shtpl_about_print2() {
 lib_shtpl_about() {
   local arg_destination="$1"
 
-  lib_core_is --not-empty "${L_ABOUT_PROJECT}" "${L_ABOUT_AUTHORS}" \
-    "${L_ABOUT_INSTITUTION}" "${L_ABOUT_DESCRIPTION}"               \
-    "${L_ABOUT_VERSION}" "${L_ABOUT_YEARS}"                         \
-    "${L_ABOUT_LICENSE}"  "" ""
+  local prefix
+  prefix="L_$(lib_core_file_get --name "$0")"
+  prefix="$(lib_core_str_to --const "${prefix}")"
+  
+  if lib_core_var_is --not-empty                        \
+    "${prefix}_ABOUT_PROJECT" "${prefix}_ABOUT_AUTHORS" \
+    "${prefix}_ABOUT_DESCRIPTION" "${prefix}_ABOUT_YEARS"; then
+    case "${arg_destination}" in
+      --dialog|--terminal)
+        eval lib_shtpl_about_print2 \"${arg_destination}\"                        \
+          \"\${${prefix}_ABOUT_PROJECT}\" \"\${${prefix}_ABOUT_AUTHORS}\"         \
+          \"\${${prefix}_ABOUT_INSTITUTION}\" \"\${${prefix}_ABOUT_DESCRIPTION}\" \
+          \"\${${prefix}_ABOUT_VERSION}\" \"\${${prefix}_ABOUT_YEARS}\"           \
+          \"\${${prefix}_ABOUT_LICENSE}\" \"\${${prefix}_ABOUT_LOGO}\"
+        ;;
 
-  case "${arg_destination}" in
-    --dialog|--terminal)
-      lib_shtpl_about_print2 "${arg_destination}"         \
-        "${L_ABOUT_PROJECT}" "${L_ABOUT_AUTHORS}"         \
-        "${L_ABOUT_INSTITUTION}" "${L_ABOUT_DESCRIPTION}" \
-        "${L_ABOUT_VERSION}" "${L_ABOUT_YEARS}"           \
-        "${L_ABOUT_LICENSE}" "${L_ABOUT_LOGO}" "" ""
-      ;;
-
-    --help)
-      lib_shtpl_about_print1 "${arg_destination}"         \
-        "${L_ABOUT_PROJECT}" "${L_ABOUT_AUTHORS}"         \
-        "${L_ABOUT_INSTITUTION}" "${L_ABOUT_DESCRIPTION}" \
-        "${L_ABOUT_VERSION}" "${L_ABOUT_YEARS}"           \
-        "${L_ABOUT_LICENSE}"
-      ;;
-  esac
+      --help)
+        eval lib_shtpl_about_print1 \"${arg_destination}\"                        \
+          \"\${${prefix}_ABOUT_PROJECT}\" \"\${${prefix}_ABOUT_AUTHORS}\"         \
+          \"\${${prefix}_ABOUT_INSTITUTION}\" \"\${${prefix}_ABOUT_DESCRIPTION}\" \
+          \"\${${prefix}_ABOUT_VERSION}\" \"\${${prefix}_ABOUT_YEARS}\"           \
+          \"\${${prefix}_ABOUT_LICENSE}\"
+        ;;
+    esac
+  fi
 }
 
 #===  FUNCTION  ================================================================
@@ -940,6 +949,10 @@ lib_shtpl_arg_is_set() {
 #===============================================================================
 lib_shtpl_genhelp() {
   local arg_section="$1"
+
+  # Prefix (from '/src/lang/*.*.lang.sh') that most of the constants start with,
+  # e.g. 'L_RUN'
+  local prefix
   prefix="L_$(lib_core_file_get --name "$0")"
   prefix="$(lib_core_str_to --const "${prefix}")"
 
