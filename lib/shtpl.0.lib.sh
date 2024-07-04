@@ -487,7 +487,7 @@ lib_shtpl_about_print2() {
 #                where <S>/<s> is the script's filename without '.sh', in
 #                uppercase/lowercase letters.
 #
-#                Example: If this function is called from a file named 
+#                Example: If this function is called from a file named
 #                '/src/run.sh' then it expects <L_RUN_ABOUT_...> variables
 #                defined in '/src/lang/run.0.lang.sh'.
 #
@@ -502,7 +502,7 @@ lib_shtpl_about() {
   local prefix
   prefix="L_$(lib_core_file_get --name "$0")"
   prefix="$(lib_core_str_to --const "${prefix}")"
-  
+
   if lib_core_var_is --not-empty                        \
     "${prefix}_ABOUT_PROJECT" "${prefix}_ABOUT_AUTHORS" \
     "${prefix}_ABOUT_DESCRIPTION" "${prefix}_ABOUT_YEARS"; then
