@@ -153,13 +153,13 @@ readonly LIB_SHTPL_EN_TXT_HELP_TTL_NOTES="NOTES"
 
 #  Credentials
 readonly LIB_SHTPL_EN_TXT_HELP_TXT_NOTES_CREDENTIALS_ENV="\
-It is highly recommended to pass credentials only via environmental variables. To do so, just set this value to 'env:<VAR>' (without '' <>) where <VAR> is your environmental variable's name.
+It is highly recommended to pass credentials only via environment variables. To do so, just set this value to 'env:<VAR>' (without '' <>) where <VAR> is your environment variable's name.
 
 Please note that passing credentials in clear-text form can be highly insecure as any other user/process could display the command line of this application by using system utilities like 'ps'.
 
 Example: You would like to pass the password '123456'.
 
-  Via an environmental variable (preferred)
+  Via an environment variable (preferred)
     > export mypwd=\"123456\"
     > ... \"env:mypwd\"
 

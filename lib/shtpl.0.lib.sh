@@ -474,7 +474,7 @@ lib_shtpl_about_print2() {
 #  DESCRIPTION:  Print about message (project, author, copyright, license, etc.)
 #                Wrapper for `lib_shtpl_about_print1()` and
 #                `lib_shtpl_about_print2()`. Please note that the function has
-#                no arguments but expects certain environmental variables
+#                no arguments but expects certain environment variables
 #                to be set, see below.
 #
 #      GLOBALS:  The function relies on the following constants/variables,
