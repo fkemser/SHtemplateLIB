@@ -53,6 +53,7 @@ readonly LIB_SHTPL_DE_TXT_INIT_CHECK_ERR_LOGSERVICE="Log-Dienst (logd, syslog, s
 readonly LIB_SHTPL_DE_TXT_INIT_CHECK_WARN="Eine oder mehrere optionale Voraussetzungen (Pakete, Dateien, etc.) sind nicht erfüllt. Einige Funktionen sind unter Umständen nicht verfügbar."
 readonly LIB_SHTPL_DE_TXT_INIT_FIRST_INFO="Skript gestartet"
 readonly LIB_SHTPL_DE_TXT_INIT_UPDATE_ERR="Initialisierung konnte nicht erfolgreich abgeschlossen werden."
+readonly LIB_SHTPL_DE_TXT_REPEAT_ARG="Dieser Parameter kann mehrfach angegeben werden."
 readonly LIB_SHTPL_DE_TXT_TRAP_MAIN_TERMINATED="Signal <\${arg_signal}> erhalten. Skript wird beendet (PID <\${pid}>) ..."
 readonly LIB_SHTPL_DE_TXT_TRAP_MAIN_TERMINATING="Skript beendet (PID <\${pid}>)."
 

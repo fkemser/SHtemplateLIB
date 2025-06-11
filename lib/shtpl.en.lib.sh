@@ -53,6 +53,7 @@ readonly LIB_SHTPL_EN_TXT_INIT_CHECK_ERR_LOGSERVICE="Log service (logd, syslog, 
 readonly LIB_SHTPL_EN_TXT_INIT_CHECK_WARN="One or more optional requirements are not fulfilled. Some features may not be available."
 readonly LIB_SHTPL_EN_TXT_INIT_FIRST_INFO="Script started"
 readonly LIB_SHTPL_EN_TXT_INIT_UPDATE_ERR="Could not complete initialization process."
+readonly LIB_SHTPL_EN_TXT_REPEAT_ARG="This parameter can be specified multiple times."
 readonly LIB_SHTPL_EN_TXT_TRAP_MAIN_TERMINATED="Signal <\${arg_signal}> received. Terminating (PID <\${pid}>) ..."
 readonly LIB_SHTPL_EN_TXT_TRAP_MAIN_TERMINATING="Script terminated (PID <\${pid}>)."
 
