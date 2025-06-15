@@ -167,6 +167,12 @@ Example: You would like to pass the password '123456'.
   Directly, in clear-text form (NOT recommended)
     > ... \"123456\""
 
+#  Cryptography
+readonly LIB_SHTPL_EN_TXT_HELP_TXT_NOTES_CRYPTO_RECOMMENDATION="\
+For more information on recommended ciphers and lengths please have a look at e.g.:
+
+https://www.bsi.bund.de/EN/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/Technische-Richtlinien/TR-nach-Thema-sortiert/tr02102/tr02102_node.html"
+
 #-------------------------------------------------------------------------------
 #  REFERENCES
 #-------------------------------------------------------------------------------

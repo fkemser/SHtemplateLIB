@@ -167,6 +167,12 @@ Beispiel: Sie möchten dem Skript das Passwort '123456' übergeben.
   Direkt, im Klartext (NICHT empfohlen)
     > ... \"123456\""
 
+#  Cryptography
+readonly LIB_SHTPL_DE_TXT_HELP_TXT_NOTES_CRYPTO_RECOMMENDATION="\
+Mehr Informationen zu empfohlenen Algorithmen und Schlüssellängen finden Sie beispielsweise unter:
+
+https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/Technische-Richtlinien/TR-nach-Thema-sortiert/tr02102/tr02102_node.html"
+
 #-------------------------------------------------------------------------------
 #  REFERENCES
 #-------------------------------------------------------------------------------
