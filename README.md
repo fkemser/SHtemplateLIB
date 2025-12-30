@@ -79,7 +79,7 @@
 
 This repository provides constants and functions that are **exclusively used within [SHtemplate][SHtemplate-url] repository** such as
 
-* language-specific text snippets like help texts, interactive dialogues, terminal/log messages, and
+* language-specific text snippets like help texts, interactive dialogs, terminal/log messages, and
 * functions, e.g. the semi-automatic creation of the script's help.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

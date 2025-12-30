@@ -11,8 +11,8 @@
 #                 (This is a library file, so please do NOT run it.)
 #
 #  DESCRIPTION:   --German-- String Constants File
-#                 Used to generate help texts, interactive dialogues,
-#                 and other  terminal/log messages.
+#                 Used to generate help texts, interactive dialogs,
+#                 and other terminal/log messages.
 #
 #         BUGS:   ---
 #
